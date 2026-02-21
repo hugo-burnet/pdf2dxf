@@ -1,0 +1,57 @@
+# =========================
+# Dépendances Node.js / Web
+# =========================
+node_modules/
+dist/
+dist-ssr/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# =========================
+# Dépendances et Builds Rust / Tauri
+# =========================
+target/
+src-tauri/target/
+src-tauri/gen/
+**/*.rs.bk
+
+# =========================
+# Scripts Python
+# =========================
+venv/
+__pycache__/
+*.pyc
+.env
+
+# =========================
+# Fichiers Générés / Compilations
+# =========================
+A_METTRE_SUR_WINDOWS/
+*.exe
+*.msi
+*.AppImage
+
+# =========================
+# Fichiers de Processus / CAO
+# =========================
+*_dump.txt
+op_counts.txt
+*.pdf
+*.dxf
+pdf_render*.png
+parse_test/target/
+
+# =========================
+# Fichiers Système / Editeurs
+# =========================
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
