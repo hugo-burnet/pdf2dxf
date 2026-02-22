@@ -1,39 +1,48 @@
-# PDF2DXF Converter
+# 📐 PDF2DXF (v1.0.0) - Convertisseur Vectoriel Haute Fidélité
 
-PDF2DXF est une application de bureau performante (développée avec **Tauri v2**, **React** et **Rust**) permettant de convertir des plans d'architectes et autres fichiers vectoriels du format PDF vers le format CAO DXF (AutoCAD R12). L'application garantit une très haute fidélité d'extraction vectorielle pour le traitement géométrique direct.
+**PDF2DXF** est votre nouvel outil de bureau conçu pour transformer sans perte les plans d'architectes (ou n'importe quel dessin vectoriel) du format PDF vers le format CAO universel DXF.
 
-## Fonctionnalités
-- Processus complet d'extraction et de conversion des données vectorielles d'un PDF.
-- Prise en charge de la transformation d'échelle (`1:X`).
-- Interface moderne, épurée et ergonomique respectant les codes de design minimaux.
-- Visualisation directe et ouverture transparente des fichiers DXF fraîchement générés avec votre logiciel installé par défaut.
+---
 
-## Architecture
-- **Frontend** : [React](https://react.dev/), [Vite](https://vitejs.dev/), [Framer Motion](https://www.framer.com/motion/) et icônes SVG via [Lucide](https://lucide.dev/).
-- **Backend** : [Rust](https://www.rust-lang.org/) fonctionnant sous [Tauri v2](https://v2.tauri.app/). Analyse PDF (`lopdf`), algorithmes matriciels, et génération structurée (`dxf`, `image`).
+## 🛠️ Comment utiliser le logiciel ?
 
-## Installation & Développement
+### 1. Importation d'un plan
+Ouvrez l'application et glissez-déposez simplement votre fichier PDF dans la grande zone centrale (vous pouvez également cliquer sur cette zone pour parcourir vos fichiers classiques).
 
-### Prérequis
-- `Node.js`
-- `Rust` / `Cargo`
-- Dépendances de votre système d'exploitation requises par Tauri.
+### 2. Réglage de l'échelle (⚠️ Très important)
+Par défaut, le logiciel extrait les lignes à la taille du papier du PDF (échelle 1/1). 
+**Si votre cartouche PDF indique que le plan est à l'échelle `1/20e`**, voici comment retrouver vos mesures réelles en mètres/millimètres dans AutoCAD :
+* Cliquez sur le bloc **"Échelle Globale"** (en bas à gauche de la fenêtre).
+* Rentrez un nouveau ratio inverse. Pour rétablir un plan au 1/20e pour qu'il soit grandeur nature, tapez : **`20 / 1`**
+* *Autre exemple : Si le plan imprimé est au 1/50e, tapez `50 / 1` pour que le logiciel multiplie toute la géométrie par 50 lors de la conversion.*
 
-### Commandes
+### 3. Lancement de la Conversion
+Une fois le plan et l'échelle choisis, cliquez sur le gros bouton bleu **"Start Conversion"** en bas à droite.
 
-```bash
-# 1. Installer les paquets node
-npm install
+### 4. Ouvrir vos fichiers en un clic 🖱️
+Fini de chercher où les fichiers sont partis s'enregistrer ! 
+Sur la **barre latérale gauche**, vous retrouverez l'historique complet de toutes vos conversions. 
+**Cliquez directement sur un élément de cet historique** : le fichier DXF généré s'ouvrira illico avec votre logiciel installé par défaut (comme AutoCAD, DraftSight ou un viewer CAO).
 
-# 2. Lancer la version de test avec le rechargement à chaud (Vite + Fenêtre Rust)
-npm run tauri dev
+---
 
-# 3. Générer le binaire pour votre système
-npm run tauri build
-```
+## 📦 Installation (Windows)
 
-## 👨‍💻 Auteur
-Créé par [Hugo Burnet](https://www.linkedin.com/in/hugo-burnet-a11323309/)  
-- 📜 **Portfolio** : [cv-online](https://hugo-burnet.github.io/cv-online/)  
-- 📐 **Logiciel CalipiCAD** : [CalipiCAD](https://hugo-burnet.github.io/CalipiCAD/)  
-- 🐈‍⬛ **Toutes mes sources** : [hugo-burnet sur Github](https://github.com/hugo-burnet)
+1. Rendez-vous dans la section **Releases** et téléchargez le fichier d'installation (`pdf2dxf_1.0.0_x64-setup.exe`).
+2. Lancez l'installation et cliquez sur suivant. Le programme se logera automatiquement dans votre menu Démarrer.
+
+---
+
+## 💻 Pour les Geeks (Détails techniques)
+
+* **Backend (Rust) :** Le moteur lourd. Décodage natif du flux PDF via `lopdf`, décomposition mathématique des matrices de transformation (CTM) et conversion des courbes de Bézier en segments de droites exploitables.
+* **Génération CAO :** Écriture native au format **DXF R12**. C'est la version la plus stable pour garantir une ouverture sans corruption d'en-tête sur n'importe quel logiciel du marché.
+* **Frontend (React / Tauri v2) :** Interface minimaliste, communication inter-processus (IPC) ultra-rapide. Résultat : l'application consomme moins de RAM qu'un simple onglet de navigateur.
+
+---
+
+### 👨‍💻 Créé par *Hugo Burnet*
+* 🌐 [Portfolio - CV Online](https://hugo-burnet.github.io/cv-online/)
+* 📐 [Plateforme CalipiCAD](https://hugo-burnet.github.io/CalipiCAD/)
+
+**Bonnes conversions et bonnes conceptions sur vos DXF générés !**
